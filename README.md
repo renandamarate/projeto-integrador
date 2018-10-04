@@ -17,3 +17,5 @@ git remote add origin https://github.com/renandamarate/repository-name.git
 - Fazendo push para servidor  
 git push -u origin --all  
 git push -u origin --tags  
+
+teste
