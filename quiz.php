@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-	<meta charset="UTF-8">
-</head>
-<?php
-$perg = $_GET["Pergunta"];
-$resp = $_GET["respostaCerta"];
 
+<?php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -19,30 +14,20 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT * FROM questoes";
-echo $sql;
+$sql = "SELECT pergunta,respostacerta,erradaa,erradab,erradac,erradad FROM questoes";
+
 
 $result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-    }
-} else {
-    echo "0 results";
-}
 $conn->close();
 ?>
 
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
 	<title>Estude para o Enade</title>
 	
 		<style>
-		body{
-			background-image: scr="\Users\Bruna\Desktop\BRUNA\sistemas.png";
-
+		body{  
+		
 		}
 		h1{
 			font-family: arial;
@@ -61,16 +46,36 @@ $conn->close();
 	</style>
 </head>
 <body>
-	<img src="C:\Users\Bruna\Desktop\BRUNA\sistemas.png" height="200" width="200">
+	<nav>
+		<ul>
+			<li><a href="enade.html">Home</a></li>
+			<li><a href="quiz.php">Quiz</a></li>
+			<li><a href="faleconosco.html">Fale Conosco</a></li>
+		</ul>
+	</nav>
+	<?php 
 
-	Qual o nome do fulano:<br/>
-	<br/>
-	<input type="radio" name="Branco"></br>
-	<input type="radio" name="Amarelo"></br>
-	<input type="radio" name="Verde"></br>
-</br>
-	<input type="button" value="eniar">
-</br>	
+
+		if ($result->num_rows > 0) {
+			
+				while ($row = $result->fetch_assoc()) {
+					echo nl2br(utf8_encode($row["pergunta"]));	
+					echo "";
+				 
+					echo '<br/>';
+					echo '</br><input type="radio" name="RESPOSTA">'.$row['erradab'];
+					echo '</br><input type="radio" name="RESPOSTA">'.$row['erradaa'];
+					echo '</br><input type="radio" name="RESPOSTA">'.$row['respostacerta'];
+					echo'</br>';
+					echo	'<input type="button" value="enviar">';
+				}			 
+								# code...
+		}
+	
+ ?>
+	
+
+	
 </body>
 
 	
@@ -78,6 +83,5 @@ $conn->close();
 
 
 </html>
-
 
 
