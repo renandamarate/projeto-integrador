@@ -13,8 +13,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-
-$sql = "SELECT pergunta,respostacerta,erradaa,erradab,erradac,erradad FROM questoes where id=1";
+$numero=rand(1,9) ;
+$sql = "SELECT pergunta,respostacerta,erradaa,erradab,erradac,erradad FROM questoes where id=" . $numero;
 
 
 $result = $conn->query($sql);
@@ -73,20 +73,66 @@ $conn->close();
 
 
 		if ($result->num_rows > 0) {
-			
+			$numero=rand(1,5);
 				while ($row = $result->fetch_assoc()) {
 					echo nl2br(utf8_encode($row["pergunta"]));	
 					echo "";
-				 
-					echo '<br/>';
-					echo '</br><input type="radio" name="RESPOSTA">'.$row['erradab'];
-					echo '</br><input type="radio" name="RESPOSTA">'.$row['erradaa'];
-					echo '</br><input type="radio" name="RESPOSTA">'.$row['erradac'];
-					echo '</br><input type="radio" name="RESPOSTA">'.$row['erradad'];
-					echo '</br><input type="radio" name="RESPOSTA">'.$row['respostacerta'];
-					echo'</br>';
-					echo	'<input type="button" value="enviar">'.'</br>';
-
+					 if($numero==1){
+						echo '<br/>';
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradab']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradaa']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradac']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradad']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['respostacerta']));
+						echo'</br>';
+						echo	'<input type="button" value="Confirmar">'.'</br>';
+						
+					 }
+					 if($numero==2){
+						echo '<br/>';
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['respostacerta']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradaa']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradac']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradad']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradab']));
+						echo'</br>';
+						echo	'<input type="button" value="Confirmar">'.'</br>';
+						
+					 }
+					 if($numero==3){
+						echo '<br/>';
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradac']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['respostacerta']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradaa']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradad']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradab']));
+						echo'</br>';
+						echo	'<input type="button" value="Confirmar">'.'</br>';
+						
+					 }
+					  if($numero==4){
+						echo '<br/>';
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradac']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradaa']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['respostacerta']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradad']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradab']));
+						echo'</br>';
+						echo	'<input type="button" value="Confirmar">'.'</br>';
+						
+					 }
+					 if($numero==5){
+						echo '<br/>';
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradac']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradaa']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradab']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['respostacerta']));
+						echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradad']));
+						echo'</br>';
+						echo	'<input type="button" value="Confirmar">'.'</br>';
+						
+					 }
+					 
 				}			 
 								# code...
 		}
