@@ -56,7 +56,7 @@ $conn->close();
         </button>
         <ul class="nav nav-pills">
 	  <li class="nav-item">
-		<a class="nav-link" href="enade.html">Home</a>
+		<a class="nav-link" href="index.html">Home</a>
 	  </li>
 	  <li class="nav-item">
 		<a class="nav-link" href="quiz.php">Questões</a>
