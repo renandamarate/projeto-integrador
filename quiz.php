@@ -70,7 +70,7 @@ $conn->close();
       </div>
 		</nav>
 		
-		<form >
+<form>
 	<?php 
 
 
@@ -130,13 +130,37 @@ $conn->close();
 							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradad']));
 							echo'</br>';
 						 }
-						 
-					}			 
+					}
 									# code...
 			}
-			echo	'<input type="submit" value="Confirmar " >'.'</br>';
-							
-		
+			
+			echo '<button id="Confirmar">';
+			
+		jQuery("#Confirmar").click(function(){
+				$escolha = @$_POST['RESPOSTA'];
+			if ($escolha==null){ 
+				echo '<div class="alert alert-warning">';
+					echo'<strong>Warning!</strong> Selecione uma das repostas para continuar </br>';
+					
+					echo '<img src="images/fausto.png" width=300 length=300 />';
+				echo'</div>';
+			}
+			else if ($escolha=$row('respostacerta')){
+				echo '<div class="alert alert-success">';
+					echo '<strong>Resposta Certa!</strong>';
+				echo '</div>';
+			}
+			else{
+				echo '<div class="alert alert-danger">';
+					echo '<strong>Errou!</strong>';
+				echo '</div>';
+			}
+			
+			});
+			
+			echo '<input type="Button" value="Confirmar" >'.'</br>';
+			echo '<input type="submit" value="Proxima " >'.'</br>';
+			
  ?>
 
 	</body>
