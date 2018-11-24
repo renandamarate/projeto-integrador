@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -12,7 +13,27 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
+var_dump($_SESSION["perguntas"]);
+
+if (is_null($_SESSION["perguntas"])){
+	$_SESSION["perguntas"]=["1", "2", "3","4", "5", "6","7", "8", "9"];
+} else if (count($_SESSION["perguntas"]) == 0) {
+	echo '<script type="text/javascript">alert("PROVA CONCLUIDA");</script>';
+	$_SESSION["perguntas"]=["1", "2", "3","4", "5", "6","7", "8", "9"];
+
+}
+
 $numero=rand(1,9) ;
+
+if (($key = array_search($numero, $_SESSION["perguntas"])) !== false) {
+    unset($_SESSION["perguntas"][$key]);
+} else if ( count($_SESSION["perguntas"]) !== 0 ) {
+	$variable = $_SESSION["perguntas"];
+	$numero = array_pop(array_reverse($variable));
+	$remove = array_search($numero, $_SESSION["perguntas"]);
+	unset($_SESSION["perguntas"][$remove]);
+}
+
 
 $sql = "SELECT pergunta,respostacerta,erradaa,erradab,erradac,erradad FROM questoes where id=" . $numero;
 
@@ -23,8 +44,14 @@ $conn->close();
 
 <head>
 	<meta charset="utf-8">
-	  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	 
+
+ <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>	
+  
 	<title>Estude para o Enade</title>
 	
 		<style>
@@ -70,9 +97,23 @@ $conn->close();
       </div>
 		</nav>
 		
+ <div class="alert alert-warning" style="display:none;">
+ <strong>Warning!</strong> Selecione uma das repostas para continuar
+ </div>
+ 
+ 
+		<div class="alert alert-success" style="display:none;">
+			<strong>Resposta Certa!</strong>
+		</div>
+		
+		
+		<div class="alert alert-danger" style="display:none;">
+		<strong>Errou!</strong> </br>
+			<img src="images/fausto.png" width=300 length=300 />
+		</div>
+		
 <form>
 	<?php 
-
 
 		
 	
@@ -81,15 +122,15 @@ $conn->close();
 					while ($row = $result->fetch_assoc()) {
 						echo nl2br(utf8_encode($row["pergunta"]));	
 						echo "";
+						$numero = 1;
 						 if($numero==1){
 							echo '<br/>';
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradab']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradaa']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradac']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradad']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['respostacerta']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradab'])).'">'.nl2br(utf8_encode($row['erradab']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradaa'])).'">'.nl2br(utf8_encode($row['erradaa']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradac'])).'">'.nl2br(utf8_encode($row['erradac']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradad'])).'">'.nl2br(utf8_encode($row['erradad']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['respostacerta'])).'">'.nl2br(utf8_encode($row['respostacerta']));
 							echo'</br>';
-							
 						 }
 						 if($numero==2){
 							echo '<br/>';
@@ -130,40 +171,48 @@ $conn->close();
 							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradad']));
 							echo'</br>';
 						 }
-					}
+					
+			
+			echo '<input type="Button" id="Confirmar" value="Confirmar" >'.'</br>';
+			echo '<input type="submit" value="Proxima " >'.'</br>';
+			$resposta = "";
+			if (isset($_POST['RESPOSTA'])){
+				$resposta = $_POST['RESPOSTA'];
+			}
+			$respCerta = $row['respostacerta'];
+			echo '<input type="hidden" id="respCerta" value="'. (string)$respCerta .'" >'.'</br>';
+			
+			}
 									# code...
 			}
 			
-			echo '<button id="Confirmar">';
-			
-		jQuery("#Confirmar").click(function(){
-				$escolha = @$_POST['RESPOSTA'];
-			if ($escolha==null){ 
-				echo '<div class="alert alert-warning">';
-					echo'<strong>Warning!</strong> Selecione uma das repostas para continuar </br>';
-					
-					echo '<img src="images/fausto.png" width=300 length=300 />';
-				echo'</div>';
-			}
-			else if ($escolha=$row('respostacerta')){
-				echo '<div class="alert alert-success">';
-					echo '<strong>Resposta Certa!</strong>';
-				echo '</div>';
-			}
-			else{
-				echo '<div class="alert alert-danger">';
-					echo '<strong>Errou!</strong>';
-				echo '</div>';
-			}
-			
-			});
-			
-			echo '<input type="Button" value="Confirmar" >'.'</br>';
-			echo '<input type="submit" value="Proxima " >'.'</br>';
-			
  ?>
-
 	</body>
+	<script>
+	jQuery("#Confirmar").click(function(){
+		
+		$(".alert-warning").css("display", "none");
+		$(".alert-success").css("display", "none");
+		$(".alert-danger").css("display", "none");
+		
+		var escolha = $('input[name=RESPOSTA]:checked').val();
+		var respCerta = jQuery("#respCerta").val();
+		
+	if (escolha==undefined){
+		$(".alert-warning").css("display", "block");
+	}
+	else if (escolha == $("#respCerta").val() ){
+		$(".alert-success").css("display", "block");
+		jQuery("input:radio").attr('disabled',true);
+	}
+	else{
+		$(".alert-danger").css("display", "block");
+		jQuery("input:radio").attr('disabled',true);
+	}
+	
+	});
+	</script>
+	
 </html>
 
 
