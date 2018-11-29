@@ -134,41 +134,41 @@ $conn->close();
 						 }
 						 if($numero==2){
 							echo '<br/>';
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['respostacerta']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradaa']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradac']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradad']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradab']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradab'])).'">'.nl2br(utf8_encode($row['erradab']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradaa'])).'">'.nl2br(utf8_encode($row['erradaa']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradac'])).'">'.nl2br(utf8_encode($row['erradac']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['respostacerta'])).'">'.nl2br(utf8_encode($row['respostacerta']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradad'])).'">'.nl2br(utf8_encode($row['erradad']));
 							echo'</br>';
 						 }
 						 if($numero==3){
 							echo '<br/>';
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradac']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['respostacerta']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradaa']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradad']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradab']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradab'])).'">'.nl2br(utf8_encode($row['erradab']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradaa'])).'">'.nl2br(utf8_encode($row['erradaa']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['respostacerta'])).'">'.nl2br(utf8_encode($row['respostacerta']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradad'])).'">'.nl2br(utf8_encode($row['erradad']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradac'])).'">'.nl2br(utf8_encode($row['erradac']));
 							echo'</br>';
 
 							
 						 }
 						  if($numero==4){
 							echo '<br/>';
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradac']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradaa']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['respostacerta']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradad']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradab']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradab'])).'">'.nl2br(utf8_encode($row['erradab']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['respostacerta'])).'">'.nl2br(utf8_encode($row['respostacerta']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradac'])).'">'.nl2br(utf8_encode($row['erradac']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradad'])).'">'.nl2br(utf8_encode($row['erradad']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradaa'])).'">'.nl2br(utf8_encode($row['erradaa']));
 							echo'</br>';
 
 						 }
 						 if($numero==5){
 							echo '<br/>';
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradac']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradaa']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradab']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['respostacerta']));
-							echo '</br><input type="radio" name="RESPOSTA">'.nl2br(utf8_encode($row['erradad']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['respostacerta'])).'">'.nl2br(utf8_encode($row['respostacerta']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradaa'])).'">'.nl2br(utf8_encode($row['erradaa']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradac'])).'">'.nl2br(utf8_encode($row['erradac']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradad'])).'">'.nl2br(utf8_encode($row['erradad']));
+							echo '</br><input type="radio" name="RESPOSTA" value="'.nl2br(utf8_encode($row['erradab'])).'">'.nl2br(utf8_encode($row['erradab']));
 							echo'</br>';
 						 }
 					
